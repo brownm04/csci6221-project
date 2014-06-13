@@ -2,24 +2,45 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>edu.gwu.csci6221.team-awesome</groupId>
+	<groupId>edu.gwu.csci6221.teamawesome</groupId>
 	<artifactId>project</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	
-	<name>project Maven Webapp</name>
+	<name>CSCI6221 Team Awesome Project</name>
+
+	<properties>
+		<spring.version>4.0.5.RELEASE</spring.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>		
+
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>project</finalName>
+		<finalName>CSCI6221Project</finalName>
 	</build>
 
 </project>
