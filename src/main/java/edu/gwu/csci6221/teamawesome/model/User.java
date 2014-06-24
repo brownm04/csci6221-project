@@ -16,31 +16,35 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	@Column(name = "username")
 	private String username;
 
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "phone")
 	private String phone;
-	
+
 	@Column(name = "password")
 	private String password;
-	
-	public User(long id, String name, String email, String phone, String password)
-	{
+
+	public User() {
+
+	}
+
+	public User(long id, String name, String email, String phone,
+			String password) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -48,7 +52,7 @@ public class User implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

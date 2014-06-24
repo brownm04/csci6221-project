@@ -1,7 +1,6 @@
 package edu.gwu.csci6221.teamawesome.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

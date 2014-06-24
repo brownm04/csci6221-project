@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractDAO<T extends Serializable> implements IDAO<T> {
@@ -16,43 +17,42 @@ public abstract class AbstractDAO<T extends Serializable> implements IDAO<T> {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	// protected final void setClazz(final Class<T> clazzToSet) {
-	// this.clazz = (Class<T>) ((ParameterizedType) getClass()
-	// .getGenericSuperclass()).getActualTypeArguments()[0];
-	// clazz = checkNotNull(clazzToSet);
-	// }
-
 	@Override
+	@Transactional
 	public final T findOne(final long id) {
 		return (T) getCurrentSession().get(clazz, id);
 	}
 
 	@Override
+	@Transactional
 	public final List<T> findAll() {
 		return getCurrentSession().createQuery("from " + clazz.getName())
 				.list();
 	}
 
 	@Override
+	@Transactional
 	public final void create(final T entity) {
 		checkNotNull(entity);
-		// getCurrentSession().persist(entity);
 		getCurrentSession().saveOrUpdate(entity);
 	}
 
 	@Override
+	@Transactional
 	public final T update(final T entity) {
 		checkNotNull(entity);
 		return (T) getCurrentSession().merge(entity);
 	}
 
 	@Override
+	@Transactional
 	public final void delete(final T entity) {
 		checkNotNull(entity);
 		getCurrentSession().delete(entity);
 	}
 
 	@Override
+	@Transactional
 	public final void deleteById(final long entityId) {
 		final T entity = findOne(entityId);
 		checkState(entity != null);
