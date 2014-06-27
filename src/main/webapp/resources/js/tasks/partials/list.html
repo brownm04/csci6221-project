@@ -1,0 +1,19 @@
+<form novalidate>
+  Username: <input type="text" ng-model="user.username" /><br>
+  Name: <input type="text" ng-model="user.name" /><br>
+  Email: <input type="text" ng-model="user.email" /><br>
+  Phone: <input type="text" ng-model="user.phone" /><br>
+  Password: <input type="text" ng-model="user.password" /><br>
+  
+  <input type="submit" ng-click="submit()" />
+</form>
+
+<table border="1">
+  <tr ng-repeat="user in users">
+    <td ng-bind="user.username"></td>
+    <td ng-bind="user.name"></td>
+    <td ng-bind="user.email"></td>
+    <td ng-bind="user.phone"></td>
+    <td ng-bind="user.password"></td>
+  </tr>
+</table>

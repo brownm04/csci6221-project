@@ -99,4 +99,11 @@ public class User implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		return "User: [username: " + getUsername() + ", name: " + getName()
+				+ ", email: " + getEmail() + ", phone: " + getPhone()
+				+ ", password: " + getPassword() + "]";
+	}
 }
