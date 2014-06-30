@@ -12,7 +12,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TASK")
 public class Task implements Serializable {
-	private static final long serialVersionUID = 6523680602998455278L; //idk what this does...
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 162958150709570528L;
 
 	@Id
 	@GeneratedValue
@@ -45,19 +48,8 @@ public class Task implements Serializable {
 	@Column(name = "task_zip")
 	long taskZip;
 
-	public Task(long id, Date dateCreated, Date dateClaimed,
-			String description, Category categoryID, float payment,
-			User postedBy, User claimedBy, Date deadline) {
-		super();
-		this.id = id;
-		this.dateCreated = dateCreated;
-		this.dateClaimed = dateClaimed;
-		this.description = description;
-		this.categoryID = categoryID;
-		this.payment = payment;
-		this.postedBy = postedBy;
-		this.claimedBy = claimedBy;
-		this.deadline = deadline;
+	public Task() {
+
 	}
 
 	public long getId() {
