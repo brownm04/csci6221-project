@@ -14,7 +14,6 @@
 	<mvc:annotation-driven />
 	
 	<context:component-scan base-package="edu.gwu.csci6221.teamawesome,
-										edu.gwu.csci6221.teamawesome.controller,
 										edu.gwu.csci6221.teamawesome.controller.rest.impl,
 										edu.gwu.csci6221.teamawesome.controller.rest,
 										edu.gwu.csci6221.teamawesome.model,
@@ -26,8 +25,8 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	<!-- bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter">
-	</bean-->
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter">
+	</bean>
 	
 	<!-- Configure to plugin JSON as request and response in method handler -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">

@@ -1,25 +1,48 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
+<%@ page isELIgnored="false"%>
 
 <html>
 <head>
-	<script type="text/javascript" src="./resources/lib/angularjs/angular.js"></script>
-	<script type="text/javascript" src="./resources/lib/angular-ui-bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
-	<script type="text/javascript" src="./resources/lib/angular-ui-router/angular-ui-router.min.js"></script>
-	
-	<link rel="stylesheet" type="text/css" href="./resources/css/bootstrap/bootstrap.min.css" />
+<script type="text/javascript"
+	src="./resources/lib/angularjs/angular.js"></script>
+<script type="text/javascript"
+	src="./resources/lib/angular-ui-bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+<script type="text/javascript"
+	src="./resources/lib/angular-ui-router/angular-ui-router.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="./resources/css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="./resources/css/teamawesome.css" />
+<link rel="stylesheet" type="text/css"
+	href="./resources/lib/font-awesome-4.1.0/css/font-awesome.min.css" />
 </head>
 <body>
-	Write some text in textbox:
-    <input type="text" ng-model="sometext" />
- 
-    <h1>Hello {{ sometext }}</h1>
-    
-    <div ui-view></div>
-	
+	<header data-ng-include="'./resources/js/header/partials/header.html'"
+		data-role="navigation"></header>
+
+	<section class="container">
+		<div data-ui-view></div>
+	</section>
+
 	<script type="text/javascript" src="./resources/js/app.js"></script>
+
+	<script type="text/javascript"
+		src="./resources/js/header/controllers/headerCtrl.js"></script>
+	<script type="text/javascript"
+		src="./resources/js/header/services/globalSrv.js"></script>
+
+	<script type="text/javascript" src="./resources/js/users/users.js"></script>
+	<script type="text/javascript"
+		src="./resources/js/users/controllers/registerCtrl.js"></script>
+	<script type="text/javascript"
+		src="./resources/js/users/controllers/signInCtrl.js"></script>
+
 	<script type="text/javascript" src="./resources/js/tasks/tasks.js"></script>
-	<script type="text/javascript" src="./resources/js/tasks/controllers/listCtrl.js"></script>
+	<script type="text/javascript"
+		src="./resources/js/tasks/controllers/taskListCtrl.js"></script>
+	<script type="text/javascript"
+		src="./resources/js/tasks/directives/taskItemDrv.js"></script>
 </body>
 </html>

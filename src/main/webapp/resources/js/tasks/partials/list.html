@@ -1,19 +1,25 @@
-<form novalidate>
-  Username: <input type="text" ng-model="user.username" /><br>
-  Name: <input type="text" ng-model="user.name" /><br>
-  Email: <input type="text" ng-model="user.email" /><br>
-  Phone: <input type="text" ng-model="user.phone" /><br>
-  Password: <input type="text" ng-model="user.password" /><br>
-  
-  <input type="submit" ng-click="submit()" />
-</form>
+<div class="headline">
+	Tasks List
+	<button type="button" class="btn btn-default pull-right" data-ng-click="create()">
+		<i class="fa fa-check-square-o"></i>&nbsp;&nbsp;Create Task
+	</button>
+</div>
 
-<table border="1">
-  <tr ng-repeat="user in users">
-    <td ng-bind="user.username"></td>
-    <td ng-bind="user.name"></td>
-    <td ng-bind="user.email"></td>
-    <td ng-bind="user.phone"></td>
-    <td ng-bind="user.password"></td>
-  </tr>
-</table>
+<h2 data-ng-repeat="task in tasks" data-ta-item="task"></h2>
+
+<script type="text/ng-template" id="taskCreateModal.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Create a New Task</h3>
+	</div>
+	<div class="modal-body">
+		<textarea class="form-control" name="description" data-ng-model="task.description" placeholder="Description" autofocus> </textarea>
+		<input type="text" class="form-control" name="category" data-ng-model="task.category" placeholder="Category">
+		<input type="text" class="form-control" name="payment" data-ng-model="task.payment" placeholder="Payment">
+		<input type="text" class="form-control" name="deadline" data-ng-model="task.deadline" placeholder="Deadline">
+		<input type="text" class="form-control" name="zip" data-ng-model="task.zip" placeholder="Zip Code">
+	</div>
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
+		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+	</div>
+</script>

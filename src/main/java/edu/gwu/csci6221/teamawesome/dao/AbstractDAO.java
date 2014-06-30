@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractDAO<T extends Serializable> implements IDAO<T> {
-	private Class<T> clazz = (Class<T>) ((ParameterizedType) getClass()
+	protected Class<T> clazz = (Class<T>) ((ParameterizedType) getClass()
 			.getGenericSuperclass()).getActualTypeArguments()[0];
 
 	@Autowired
@@ -32,9 +32,11 @@ public abstract class AbstractDAO<T extends Serializable> implements IDAO<T> {
 
 	@Override
 	@Transactional
-	public final void create(final T entity) {
+	public final T create(final T entity) {
 		checkNotNull(entity);
-		getCurrentSession().saveOrUpdate(entity);
+		
+		Long id = (Long) getCurrentSession().save(entity);
+		return findOne(id);
 	}
 
 	@Override

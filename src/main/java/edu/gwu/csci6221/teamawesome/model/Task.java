@@ -9,6 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.DateBridge;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Resolution;
+import org.hibernate.search.annotations.Store;
+
+@Indexed
 @Entity
 @Table(name = "TASK")
 public class Task implements Serializable {
@@ -17,31 +26,36 @@ public class Task implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
+	@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+	@DateBridge(resolution = Resolution.SECOND)
 	@Column(name = "date_created")
 	Date dateCreated;
-	
+
+	@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+	@DateBridge(resolution = Resolution.SECOND)
 	@Column(name = "date_claimed")
 	Date dateClaimed;
-	
+
 	@Column(name = "description")
+	@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
 	String description;
-	
+
 	@Column(name = "category")
 	Category categoryID;
-	
+
 	@Column(name = "payment")
 	float payment;
-	
+
 	@Column(name = "posted_by")
 	User postedBy;
-	
+
 	@Column(name = "claimed_by")
 	User claimedBy;
-	
+
 	@Column(name = "deadline")
 	Date deadline;
-	
+
 	@Column(name = "task_zip")
 	long taskZip;
 
@@ -139,5 +153,5 @@ public class Task implements Serializable {
 	public void setTaskZip(long taskZip) {
 		this.taskZip = taskZip;
 	}
-	
+
 }

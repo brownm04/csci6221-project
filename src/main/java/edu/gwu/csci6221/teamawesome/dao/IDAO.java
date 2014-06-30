@@ -8,7 +8,7 @@ public interface IDAO<T extends Serializable> {
 
 	List<T> findAll();
 
-	void create(final T entity);
+	T create(final T entity);
 
 	T update(final T entity);
 

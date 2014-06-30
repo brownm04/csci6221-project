@@ -19,12 +19,12 @@ import edu.gwu.csci6221.teamawesome.dao.IDAO;
 public abstract class AbstractRestController<T extends Serializable> implements
 		IRestController<T> {
 	@SuppressWarnings("unchecked")
-	private final Log log = LogFactory
+	protected final Log log = LogFactory
 			.getLog((Class<T>) ((ParameterizedType) getClass()
 					.getGenericSuperclass()).getActualTypeArguments()[0]);
 
 	@Autowired
-	private IDAO<T> dao;
+	protected IDAO<T> dao;
 
 	@Override
 	@RequestMapping(value = AbstractRestURIConstants.FIND_ALL, method = RequestMethod.GET)
@@ -43,9 +43,9 @@ public abstract class AbstractRestController<T extends Serializable> implements
 	@Override
 	@RequestMapping(value = AbstractRestURIConstants.CREATE, method = RequestMethod.POST)
 	public @ResponseBody
-	void create(@RequestBody final T entity) {
+	T create(@RequestBody final T entity) {
 		log.info("Creating new entity: " + entity.toString());
-		dao.create(entity);
+		return dao.create(entity);
 	}
 
 	@Override
