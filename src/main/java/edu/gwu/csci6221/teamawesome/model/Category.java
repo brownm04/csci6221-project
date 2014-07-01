@@ -11,8 +11,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CATEGORY")
 public class Category implements Serializable {
-	private static final long serialVersionUID = 6523680602998455278L; //idk what this does...
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8097320982566364210L;
+	
 	@Id
 	@GeneratedValue
 	private long id;
@@ -20,10 +23,8 @@ public class Category implements Serializable {
 	@Column(name = "Category")
 	String category;
 
-	public Category(long id, String category) {
-		super();
-		this.id = id;
-		this.category = category;
+	public Category() {
+
 	}
 
 	public long getId() {

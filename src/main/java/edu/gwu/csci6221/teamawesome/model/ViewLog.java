@@ -12,7 +12,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "VIEWLOG")
 public class ViewLog implements Serializable {
-	private static final long serialVersionUID = 6523680602998455278L; //idk what this does...
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4132784734017546104L;
 
 	@Id
 	@GeneratedValue
@@ -27,12 +30,8 @@ public class ViewLog implements Serializable {
 	@Column(name = "date_viewed")
 	Date dateViewed;
 
-	public ViewLog(long id, int taskId, int viewedById, Date dateViewed) {
-		super();
-		this.id = id;
-		this.taskId = taskId;
-		this.viewedById = viewedById;
-		this.dateViewed = dateViewed;
+	public ViewLog() {
+
 	}
 
 	public long getId() {
