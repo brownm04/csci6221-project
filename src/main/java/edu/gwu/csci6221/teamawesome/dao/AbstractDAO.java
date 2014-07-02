@@ -32,16 +32,16 @@ public abstract class AbstractDAO<T extends Serializable> implements IDAO<T> {
 
 	@Override
 	@Transactional
-	public final T create(final T entity) {
+	public T create(final T entity) {
 		checkNotNull(entity);
-		
+
 		Long id = (Long) getCurrentSession().save(entity);
 		return findOne(id);
 	}
 
 	@Override
 	@Transactional
-	public final T update(final T entity) {
+	public T update(final T entity) {
 		checkNotNull(entity);
 		return (T) getCurrentSession().merge(entity);
 	}
