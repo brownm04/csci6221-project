@@ -1,13 +1,18 @@
 package edu.gwu.csci6221.teamawesome.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "VIEWLOG")
@@ -21,13 +26,16 @@ public class ViewLog implements Serializable {
 	@GeneratedValue
 	private long id;
 
-	@Column(name = "task_id")
-	int taskId;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "task")
+	private Task task;
 	
-	@Column(name = "viewed_by_id")
-	int viewedById;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user")
+	private User user;
 	
-	@Column(name = "date_viewed")
+	@Column(name = "date_viewed", columnDefinition = "DATETIME")
+	@Temporal(TemporalType.TIMESTAMP)
 	Date dateViewed;
 
 	public ViewLog() {
@@ -42,20 +50,20 @@ public class ViewLog implements Serializable {
 		this.id = id;
 	}
 
-	public int getTaskId() {
-		return taskId;
+	public Task getTask() {
+		return task;
 	}
 
-	public void setTaskId(int taskId) {
-		this.taskId = taskId;
+	public void setTask(Task task) {
+		this.task = task;
 	}
 
-	public int getViewedById() {
-		return viewedById;
+	public User getUser() {
+		return user;
 	}
 
-	public void setViewedById(int viewedById) {
-		this.viewedById = viewedById;
+	public void setViewedById(User user) {
+		this.user = user;
 	}
 
 	public Date getDateViewed() {

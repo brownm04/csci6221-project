@@ -1,7 +1,11 @@
-angular.module('teamawesome.tasks').controller('TaskListCtrl', ['$scope', '$http', '$modal', 'GlobalSrv', '$rootScope', function($scope, $http, $modal, GlobalSrv, $rootScope) {
-	$http.get('/csci/rest/task/all').success(function(data) {
-		$scope.tasks = data;
-	});
+angular.module('teamawesome.tasks').controller('TaskListCtrl', function($scope, TaskSrv, $modal, GlobalSrv, $rootScope) {
+
+	function getAllTasks() {
+		TaskSrv.findAll().success(function(data) {
+			$scope.tasks = data;
+		});
+	}
+	getAllTasks();
 	
 	$scope.user = GlobalSrv.user;
 	
@@ -20,13 +24,11 @@ angular.module('teamawesome.tasks').controller('TaskListCtrl', ['$scope', '$http
 		});
 		
 		modalInstance.result.then(function(task) {
-			$http.get('/csci/rest/task/all').success(function(data) {
-				$scope.tasks = data;
-			});
+			getAllTasks();
 		});
 	};
 	
-	var TaskCreateModalCtrl = function($scope, $http, GlobalSrv, $modalInstance) {
+	var TaskCreateModalCtrl = function($scope, TaskSrv, $http, GlobalSrv, $modalInstance) {
 		$http.get('/csci/rest/category/all').success(function(data) {
 		    $scope.categories = data;
 		    
@@ -37,12 +39,8 @@ angular.module('teamawesome.tasks').controller('TaskListCtrl', ['$scope', '$http
 	
 		$scope.submit = function() {
 			$scope.task.postedBy = GlobalSrv.user;
-		console.log('submitting task: ', $scope.task);
-			$http({
-				method: 'POST',
-				url: '/csci/rest/task/create',
-				data: $scope.task
-			}).success(function(data) {
+			
+			TaskSrv.create($scope.task).then(function(data) {
 				$modalInstance.close(data);
 			});
 		};
@@ -51,4 +49,4 @@ angular.module('teamawesome.tasks').controller('TaskListCtrl', ['$scope', '$http
 			$modalInstance.dismiss('cancel');
 		};
 	};
-}]);
+});

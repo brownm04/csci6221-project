@@ -1,18 +1,22 @@
-angular.module('teamawesome.tasks').directive('taItem', [function(TaskService) {
+angular.module('teamawesome.tasks').directive('taItem', function($http, GlobalSrv) {
 	return {
 		restrict: 'A',
 		scope: {
-			item: '='
+			task: '='
 		},
 		link: function(scope, elem, attrs) {
-			
+			scope.userView = function() {
+				$http.post('/csci/rest/viewlog/create', { 
+					task: scope.task,
+					user: GlobalSrv.user,
+					dateViewed: Date.now()
+				});
+			};
 		},
 		template: '<div class="row">' +
-			'<div class="assmt-li-title" >' +
-				'<h4 id="clickable-title">Foobar</h4>' +
-			'</div>' +
-			'<div data-ng-bind="item.description"></div>' +
-			'<div data-ng-bind="item.payment"></div>' +
+			'<h5 data-ng-bind="task.category.category"></h5>' +
+			'<div data-ng-bind="task.description" data-ng-click="userView()"></div>' +
+			'<div data-ng-bind="task.payment"></div>' +
 		'</div>'
 	};
-}]);
+});

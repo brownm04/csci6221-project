@@ -54,5 +54,7 @@
 		src="./resources/js/tasks/controllers/taskListCtrl.js"></script>
 	<script type="text/javascript"
 		src="./resources/js/tasks/directives/taskItemDrv.js"></script>
+	<script type="text/javascript"
+		src="./resources/js/tasks/services/taskSrv.js"></script>
 </body>
 </html>
